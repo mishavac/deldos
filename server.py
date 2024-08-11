@@ -1,27 +1,22 @@
-import logging
+from flask import Flask, request, send_file
 import subprocess
 import os
-from flask import Flask, request, send_file, jsonify
-
+from PIL import ImageGrab
+import io
 app = Flask(__name__)
-
-logging.basicConfig(level=logging.DEBUG)
-
 @app.route('/screenshot', methods=['GET'])
 def take_screenshot():
-    screenshot_path = "/Users/mishavac/Desktop/screenshot.png"
-    result = subprocess.run(["screencapture", "-x", screenshot_path], capture_output=True, text=True)
+    # Создаем скриншот
+    screenshot = ImageGrab.grab()
     
-    if result.returncode != 0:
-        logging.error(f"Error taking screenshot: {result.stderr}")
-        return "Screenshot failed", 500
-    
-    if os.path.exists(screenshot_path):
-        return send_file(screenshot_path, mimetype='image/png')
-    else:
-        logging.error(f"Screenshot file not found at path: {screenshot_path}")
-        return "Screenshot file not found", 500
+    # Сохраняем скриншот в памяти
+    img_io = io.BytesIO()
+    screenshot.save(img_io, 'PNG')
+    img_io.seek(0)
 
+    # Отправляем файл скриншота на сервер без сохранения на диск
+    return send_file(img_io, mimetype='image/png')
+    
 @app.route('/execute_command', methods=['POST'])
 def execute_command():
     data = request.get_json()
