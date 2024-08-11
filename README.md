@@ -23,8 +23,8 @@ How to Run deldos
         After the server starts, you will see IP addresses displayed in the terminal, where it's running (e.g., http://127.0.0.1:5000 and http://<your_ip_address>:5000).
 
     Configure the iOS Application:
-        Open the ContentView.swift file in Xcode.
-        Go to line 28, where the server URL is specified.
+        Open the Constants.swift file in Xcode.
+        Go to line 12, and past yore IP from server.py
         Replace the URL with the IP address displayed when you started the server (e.g., http://<your_ip_address>:5000).
         Ensure that your iPhone is connected to the same network as your Mac.
 
@@ -32,10 +32,6 @@ How to Run deldos
         Build and run the application on your iPhone using Xcode.
         Use the app to send commands to the server, which will execute them on your Mac.
 
-    Sending Commands:
-        In the app, enter the name of the application or the command you want to execute on your Mac.
-        Press the "Run Command" button to send the request to the server.
-        The server will execute the command on your Mac and return the result.
 
 By following these steps, you'll be able to control your Mac using your iPhone through the deldos application.
 ENG
