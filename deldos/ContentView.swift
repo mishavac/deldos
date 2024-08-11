@@ -1,50 +1,98 @@
-
 import SwiftUI
 
 struct ContentView: View {
-    @State private var commandInput: String = ""
+    @State private var showMenu = false
+    @State private var selectedView: String = "Main"  // Отслеживание текущего выбранного экрана
+    @State private var isMenuOpen = false  // Добавляем состояние для анимации
 
     var body: some View {
-        VStack {
-            Text("Type apps name")
-            TextField("Enter command", text: $commandInput)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
+        NavigationView {
+            ZStack {
+                // Отображение текущего выбранного экрана
+                Group {
+                    if selectedView == "Main" {
+                        MainScreenView()  // Показываем новый экран
+                    } else if selectedView == "Screenshot" {
+                        Screenshot()
+                    } else if selectedView == "Apps" {
+                        Apps()
+                    }
+                    // Добавляйте дополнительные экраны здесь
+                }
+                .navigationBarTitle(selectedView, displayMode: .inline)
+                .navigationBarItems(leading: Button(action: {
+                    withAnimation {
+                        self.isMenuOpen.toggle()  // Поворот иконки при открытии меню
+                        self.showMenu.toggle()  // Открыть/закрыть меню
+                    }
+                }) {
+                    Image(systemName: "line.horizontal.3")
+                        .imageScale(.large)
+                        .rotationEffect(.degrees(isMenuOpen ? 90 : 0))  // Поворот иконки
+                        .animation(.easeInOut(duration: 0.3))  // Анимация поворота
+                })
 
-            Button(action: {
-                self.sendCommand()
-            }) {
-                Text("Send Command")
-                    .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(8)
+                // Боковое меню
+                if showMenu {
+                    HStack {
+                        VStack(alignment: .leading) {
+                            // Кнопки для переключения между экранами
+                            Button(action: {
+                                self.selectedView = "Main"
+                                withAnimation {
+                                    self.showMenu = false
+                                }
+                            }) {
+                                Text("Main")
+                                    .padding()
+                                    .background(Color.blue)  // Изменение фона кнопки
+                                    .foregroundColor(.white) // Изменение цвета текста
+                                    .font(.headline)         // Изменение стиля шрифта
+                                    .cornerRadius(8)         // Скругленные углы
+                            }
+
+                            Button(action: {
+                                self.selectedView = "Screenshot"
+                                withAnimation {
+                                    self.showMenu = false
+                                }
+                            }) {
+                                Text("Screenshot")
+                                    .padding()
+                                    .background(Color.blue)  // Изменение фона кнопки
+                                    .foregroundColor(.white) // Изменение цвета текста
+                                    .font(.headline)         // Изменение стиля шрифта
+                                    .cornerRadius(8)         // Скругленные углы
+                            }
+
+                            Button(action: {
+                                self.selectedView = "Apps"
+                                withAnimation {
+                                    self.showMenu = false
+                                }
+                            }) {
+                                Text("Apps")
+                                    .padding()
+                                    .background(Color.blue)  // Изменение фона кнопки
+                                    .foregroundColor(.white) // Изменение цвета текста
+                                    .font(.headline)         // Изменение стиля шрифта
+                                    .cornerRadius(8)         // Скругленные углы
+                            }
+
+                            // Добавляйте дополнительные кнопки здесь
+
+                            Spacer()
+                        }
+                        .frame(width: 200)
+                        .background(Color.gray.opacity(0.9))  // Фон бокового меню
+                        .offset(x: showMenu ? 0 : -200)
+                        Spacer()
+                    }
+                    .transition(.move(edge: .leading))  // Анимация перехода меню
+                }
             }
-            .padding()
         }
     }
-
-    func sendCommand() {
-        guard let url = URL(string: "http://172.20.10.5:5000/execute_command") else { return }
-
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-
-        // Форматируем команду
-        let command = "open -a \(commandInput)"
-        let jsonData = try? JSONSerialization.data(withJSONObject: ["command": command])
-
-        let task = URLSession.shared.uploadTask(with: request, from: jsonData) { data, response, error in
-            guard let data = data, error == nil else {
-                print("Ошибка: \(error?.localizedDescription ?? "Unknown error")")
-                return
-            }
-            print(String(data: data, encoding: .utf8) ?? "")
-        }
-        task.resume()
-    }
-
 }
 
 struct ContentView_Previews: PreviewProvider {
@@ -52,3 +100,4 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+

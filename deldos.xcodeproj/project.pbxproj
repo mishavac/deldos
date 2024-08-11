@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC553D802C67E55F00F985C9 /* Apps.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC553D7F2C67E55F00F985C9 /* Apps.swift */; };
+		FC553D822C67E56D00F985C9 /* Screenshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC553D812C67E56D00F985C9 /* Screenshot.swift */; };
+		FC553D862C67EE7C00F985C9 /* MainScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC553D852C67EE7C00F985C9 /* MainScreenView.swift */; };
+		FCB7C7742C68E45800444A3F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB7C7732C68E45800444A3F /* Constants.swift */; };
 		FCE62D942C67B20800D7D4D2 /* deldosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE62D932C67B20800D7D4D2 /* deldosApp.swift */; };
 		FCE62D962C67B20800D7D4D2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE62D952C67B20800D7D4D2 /* ContentView.swift */; };
 		FCE62D982C67B20A00D7D4D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCE62D972C67B20A00D7D4D2 /* Assets.xcassets */; };
@@ -14,6 +18,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FC553D7F2C67E55F00F985C9 /* Apps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Apps.swift; sourceTree = SOURCE_ROOT; };
+		FC553D812C67E56D00F985C9 /* Screenshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screenshot.swift; sourceTree = SOURCE_ROOT; };
+		FC553D852C67EE7C00F985C9 /* MainScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenView.swift; sourceTree = SOURCE_ROOT; };
+		FCB7C7732C68E45800444A3F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = SOURCE_ROOT; };
 		FCE62D902C67B20800D7D4D2 /* deldos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = deldos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCE62D932C67B20800D7D4D2 /* deldosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = deldosApp.swift; sourceTree = "<group>"; };
 		FCE62D952C67B20800D7D4D2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -51,7 +59,11 @@
 		FCE62D922C67B20800D7D4D2 /* deldos */ = {
 			isa = PBXGroup;
 			children = (
+				FCB7C7732C68E45800444A3F /* Constants.swift */,
+				FC553D852C67EE7C00F985C9 /* MainScreenView.swift */,
 				FCE62D932C67B20800D7D4D2 /* deldosApp.swift */,
+				FC553D812C67E56D00F985C9 /* Screenshot.swift */,
+				FC553D7F2C67E55F00F985C9 /* Apps.swift */,
 				FCE62D952C67B20800D7D4D2 /* ContentView.swift */,
 				FCE62D972C67B20A00D7D4D2 /* Assets.xcassets */,
 				FCE62D992C67B20A00D7D4D2 /* Preview Content */,
@@ -138,7 +150,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				FCE62D962C67B20800D7D4D2 /* ContentView.swift in Sources */,
+				FC553D862C67EE7C00F985C9 /* MainScreenView.swift in Sources */,
+				FC553D822C67E56D00F985C9 /* Screenshot.swift in Sources */,
 				FCE62D942C67B20800D7D4D2 /* deldosApp.swift in Sources */,
+				FC553D802C67E55F00F985C9 /* Apps.swift in Sources */,
+				FCB7C7742C68E45800444A3F /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
